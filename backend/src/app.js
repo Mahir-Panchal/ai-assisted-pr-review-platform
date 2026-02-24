@@ -1,13 +1,21 @@
 import express from "express";
-import cors from "cors";
+import authRoutes from "./routes/authRoutes.js";
+import { notFound, errorHandler } from "./middleware/errorMiddleware.js";
+import repositoryRoutes from "./routes/repositoryRoutes.js";
+import aiRoutes from "./routes/aiRoutes.js";
 
 const app = express();
 
-app.use(cors());
+// Body parser
 app.use(express.json());
 
-app.get("/", (req, res) => {
-    res.send("AI PR Review Backend Running 🚀");
-});
+// Routes
+app.use("/api/auth", authRoutes);
+app.use("/api/repos", repositoryRoutes);
+app.use("/api/pr", aiRoutes);
+
+// Error Middlewares
+app.use(notFound);
+app.use(errorHandler);
 
 export default app;
