@@ -37,6 +37,21 @@ const pullRequestSchema = mongoose.Schema(
             type: Boolean,
             default: false,
         },
+        aiScore: {
+            type: Number
+        },
+        filesChanged: {
+            type: Number,
+            default: 1
+        },
+        linesAdded: {
+            type: Number,
+            default: 0
+        },
+        linesRemoved: {
+            type: Number,
+            default: 0
+        },
     },
     {
         timestamps: true,

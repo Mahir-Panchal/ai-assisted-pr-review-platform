@@ -1,5 +1,6 @@
 import PullRequest from "../models/PullRequest.js";
 import Repository from "../models/Repository.js";
+import { simulateAIReview } from "../services/aiReviewService.js";
 
 // @desc Create Pull Request
 // @route POST /api/repos/:repoId/pr
@@ -55,59 +56,52 @@ export const getPullRequestsByRepo = async (req, res, next) => {
 // @route POST /api/pr/:prId/review
 // @access Private
 export const reviewPullRequest = async (req, res, next) => {
-    try {
-        const { prId } = req.params;
 
-        const pr = await PullRequest.findById(prId);
+    try {
+
+        const { prId } = req.params
+
+        const pr = await PullRequest.findById(prId)
 
         if (!pr) {
-            res.status(404);
-            throw new Error("Pull Request not found");
+            res.status(404)
+            throw new Error("Pull request not found")
         }
 
         if (pr.status !== "open") {
-            res.status(400);
-            throw new Error("PR already reviewed or closed");
+            res.status(400)
+            throw new Error("PR already reviewed")
         }
 
-        // -------- AI SIMULATION LOGIC --------
-        const text = pr.description?.toLowerCase() || "";
+        const { decision, comment, score } =
+            simulateAIReview(pr.title, pr.description)
 
-        let aiDecision;
-        let aiComment;
+        pr.aiReviewComment = comment
+        pr.aiScore = score
+        pr.reviewedAt = new Date()
 
-        if (
-            text.includes("fix") ||
-            text.includes("improve") ||
-            text.includes("optimize")
-        ) {
-            aiDecision = "approved";
-            aiComment =
-                "AI Review: Code improvements detected. Structure looks clean. Approved for merge.";
+        if (decision === "approved") {
+
+            pr.status = "merged"
+            pr.mergedAt = new Date()
+            pr.mergedByAI = true
+
         } else {
-            aiDecision = "changes_requested";
-            aiComment =
-                "AI Review: Missing improvements or insufficient clarity. Please refine implementation.";
+
+            pr.status = "changes_requested"
+
         }
 
-        pr.status = aiDecision;
-        pr.aiReviewComment = aiComment;
-        pr.reviewedAt = new Date();
-
-        // Auto-merge if approved
-        if (aiDecision === "approved") {
-            pr.status = "merged";
-            pr.mergedAt = new Date();
-            pr.mergedByAI = true;
-        }
-
-        await pr.save();
+        await pr.save()
 
         res.json({
             message: "AI review completed",
-            pr,
-        });
+            score,
+            status: pr.status,
+            comment
+        })
+
     } catch (error) {
-        next(error);
+        next(error)
     }
 };
