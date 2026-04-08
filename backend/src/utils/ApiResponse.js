@@ -1,6 +1,3 @@
-// Consistent success response envelope
-// Usage: res.status(200).json(new ApiResponse(200, data, "Success"))
-
 class ApiResponse {
     constructor(statusCode, data, message = "Success") {
         this.statusCode = statusCode;
