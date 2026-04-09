@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🤖 AI-Assisted Pull Request Review System
+# 🤖 AI-Assisted Pull Request Review Platform
 
 <p align="center">
   <em>Automated code reviews powered by Google Gemini — built for teams who ship fast.</em>
