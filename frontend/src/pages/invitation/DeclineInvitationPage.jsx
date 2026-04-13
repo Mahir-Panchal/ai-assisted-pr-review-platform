@@ -75,10 +75,10 @@ const DeclineInvitationPage = () => {
               </svg>
             </div>
             <h2 style={{ fontSize: 20, fontWeight: 700, color: "var(--text-primary)", marginBottom: 8 }}>
-              Processingâ€¦
+              Processing...
             </h2>
             <p style={{ fontSize: 13, color: "var(--text-secondary)" }}>
-              Declining the invitationâ€¦
+              Declining the invitation...
             </p>
           </>
         )}
@@ -98,7 +98,7 @@ const DeclineInvitationPage = () => {
               Invitation Declined
             </h2>
             <p style={{ fontSize: 13, color: "var(--text-secondary)", marginBottom: 24 }}>
-              You've declined the invitation. Redirectingâ€¦
+              You've declined the invitation. Redirecting...
             </p>
             <Link
               to="/"

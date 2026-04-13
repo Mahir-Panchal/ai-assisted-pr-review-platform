@@ -96,7 +96,7 @@ const DashboardPage = () => {
 
   return (
     <Layout>
-      {/* â”€â”€ Page header â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+      {/* Page header  */}
       <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", marginBottom: 28 }}>
         <div>
           <h1 style={{
@@ -132,7 +132,7 @@ const DashboardPage = () => {
         </Link>
       </div>
 
-      {/* â”€â”€ Stat cards â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+      {/*  Stat cards  */}
       <div style={{
         display: "grid", gridTemplateColumns: "repeat(4, 1fr)",
         gap: 16, marginBottom: 28
@@ -140,7 +140,7 @@ const DashboardPage = () => {
         {statCards.map((c) => <StatCard key={c.label} {...c} />)}
       </div>
 
-      {/* â”€â”€ Main content â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+      {/*  Main content  */}
       <div style={{ display: "grid", gridTemplateColumns: "1fr 360px", gap: 20 }}>
 
         {/* Recent repos */}

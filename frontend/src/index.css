@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-/* â”€â”€â”€ Design Tokens â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* Design Tokens */
 :root {
   --bg-base: #080c12;
   --bg-surface: #0d1117;
@@ -17,7 +17,7 @@
   --accent-glow: rgba(37, 99, 235, 0.25);
 }
 
-/* â”€â”€â”€ Base â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* Base */
 *,
 *::before,
 *::after {
@@ -40,7 +40,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* â”€â”€â”€ Scrollbar â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/*  Scrollbar  */
 ::-webkit-scrollbar {
   width: 5px;
   height: 5px;
@@ -59,7 +59,7 @@ body {
   background: var(--border-muted);
 }
 
-/* â”€â”€â”€ Auth Page Background â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* Auth Page Background  */
 .auth-bg {
   position: fixed;
   inset: 0;
@@ -100,7 +100,7 @@ body {
   }
 }
 
-/* â”€â”€â”€ Glass Card â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/*  Glass Card  */
 .glass-card {
   background: rgba(22, 27, 34, 0.85);
   -webkit-backdrop-filter: blur(20px);
@@ -113,7 +113,7 @@ body {
     0 1px 0 rgba(255, 255, 255, 0.06) inset;
 }
 
-/* â”€â”€â”€ Input Fields â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* Input Fields  */
 .input-field {
   width: 100%;
   background: rgba(13, 17, 23, 0.8);
@@ -140,7 +140,7 @@ body {
   box-shadow: 0 0 0 3px var(--accent-glow);
 }
 
-/* â”€â”€â”€ Buttons â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* Buttons  */
 .btn-primary {
   display: inline-flex;
   align-items: center;
@@ -184,14 +184,14 @@ body {
   transform: none;
 }
 
-/* â”€â”€â”€ Sidebar Active Link â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/*  Sidebar Active Link  */
 .sidebar-link-active {
   background: linear-gradient(90deg, rgba(37, 99, 235, 0.15), rgba(37, 99, 235, 0.05));
   color: #60a5fa;
   border-right: 2px solid #2563eb;
 }
 
-/* â”€â”€â”€ Stat Card Gradient Accents â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/*  Stat Card Gradient Accents  */
 .stat-glow-blue {
   box-shadow: 0 0 30px rgba(37, 99, 235, 0.08);
 }
@@ -208,7 +208,7 @@ body {
   box-shadow: 0 0 30px rgba(245, 158, 11, 0.08);
 }
 
-/* â”€â”€â”€ Micro-animations â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/*  Micro-animations */
 @keyframes fade-in {
   from {
     opacity: 0;
@@ -257,7 +257,7 @@ body {
   animation: pulse-dot 2s ease-in-out infinite;
 }
 
-/* â”€â”€â”€ Feature Pills on Auth Page â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/*  Feature Pills on Auth Page  */
 .feature-pill {
   display: inline-flex;
   align-items: center;
@@ -271,12 +271,12 @@ body {
   color: #93c5fd;
 }
 
-/* â”€â”€â”€ Page transition helpers â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/*  Page transition helpers  */
 .page-enter {
   animation: fade-in 0.25s ease both;
 }
 
-/* â”€â”€â”€ Modal animation â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/*  Modal animation  */
 @keyframes modal-in {
   from {
     opacity: 0;

@@ -11,7 +11,7 @@ export default defineConfig({
     port: 5173,
     strictPort: true,
     proxy: {
-      // All /api requests from browser â†’ proxied to backend (no CORS)
+      // All /api requests from browser proxied to backend (no CORS)
       '/api': {
         target: 'http://localhost:5000',
         changeOrigin: true,

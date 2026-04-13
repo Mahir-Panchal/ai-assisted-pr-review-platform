@@ -93,7 +93,7 @@ const VerifyOtpPage = () => {
   return (
     <div className="min-h-screen flex" style={{ background: "var(--bg-base)" }}>
 
-      {/* â”€â”€ Left Panel â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+      {/*  Left Panel */}
       <div
         className="hidden lg:flex lg:w-[48%] flex-col justify-center items-center p-12 relative overflow-hidden"
         style={{ background: "linear-gradient(145deg, #0a0f1a 0%, #0d1117 50%, #0a1628 100%)" }}
@@ -180,7 +180,7 @@ const VerifyOtpPage = () => {
         </div>
       </div>
 
-      {/* â”€â”€ Right Panel â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+      {/* Right Panel */}
       <div className="flex-1 flex items-center justify-center p-6 lg:p-12">
         <div className="w-full max-w-[420px] animate-fade-in">
 
@@ -272,7 +272,7 @@ const VerifyOtpPage = () => {
                     <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="3" opacity="0.25" />
                     <path d="M4 12a8 8 0 018-8" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
                   </svg>
-                  Verifyingâ€¦
+                  Verifying
                 </span>
               ) : (
                 <>Verify account <ArrowRight size={16} /></>
@@ -286,7 +286,7 @@ const VerifyOtpPage = () => {
               Didn't receive it?{" "}
               <span
                 style={{ color: "#60a5fa", cursor: "pointer", fontWeight: 500 }}
-                onClick={() => toast("Please re-register to get a new OTP.", { icon: "â„¹ï¸" })}
+                onClick={() => toast("Please re-register to get a new OTP.", { icon: "ℹ️" })}
               >
                 Resend
               </span>
@@ -295,7 +295,7 @@ const VerifyOtpPage = () => {
               to="/register"
               style={{ fontSize: 13, color: "#8b949e", textDecoration: "none", fontWeight: 400 }}
             >
-              â† Back to register
+              ← Back to register
             </Link>
           </div>
         </div>

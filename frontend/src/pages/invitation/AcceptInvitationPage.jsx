@@ -80,7 +80,7 @@ const AcceptInvitationPage = () => {
               </svg>
             </div>
             <h2 style={{ fontSize: 20, fontWeight: 700, color: "var(--text-primary)", marginBottom: 8 }}>
-              Accepting Invitationâ€¦
+              Accepting Invitation
             </h2>
             <p style={{ fontSize: 13, color: "var(--text-secondary)" }}>
               Please wait while we process your invitation.
@@ -105,7 +105,7 @@ const AcceptInvitationPage = () => {
             <p style={{ fontSize: 13, color: "var(--text-secondary)", marginBottom: 24 }}>
               You are now a contributor of{" "}
               <span style={{ color: "var(--text-primary)", fontWeight: 600 }}>{repoName}</span>.
-              <br />Redirecting to your repositoriesâ€¦
+              <br />Redirecting to your repositories...
             </p>
             <Link
               to="/repos"

@@ -8,15 +8,15 @@ import Layout from "../../components/common/Layout.jsx";
 import Loader from "../../components/common/Loader.jsx";
 import { timeAgo } from "../../utils/formatDate.js";
 import toast from "react-hot-toast";
-import { Bell, Check, Trash2, CheckCheck } from "lucide-react";
+import { Bell, Check, Trash2, CheckCheck, RefreshCcw, CheckCircle, XCircle, MessageCircle, Users, User } from "lucide-react";
 
 const notificationIcons = {
-  pr_created: "ðŸ”€",
-  pr_accepted: "âœ…",
-  pr_rejected: "âŒ",
-  comment_added: "ðŸ’¬",
-  contributor_added: "ðŸ‘¥",
-  contributor_removed: "ðŸ‘¤"
+  pr_created: <RefreshCcw size={16} />,
+  pr_accepted: <CheckCircle size={16} className="text-green-500" />,
+  pr_rejected: <XCircle size={16} className="text-red-500" />,
+  comment_added: <MessageCircle size={16} />,
+  contributor_added: <Users size={16} />,
+  contributor_removed: <User size={16} />
 };
 
 const NotificationPage = () => {

@@ -423,7 +423,7 @@ const RepositoryDetailPage = () => {
                 to={`/repos/${repoId}/contributors`}
                 style={{ fontSize: 13, color: "#60a5fa", textDecoration: "none", fontWeight: 500, display: "flex", alignItems: "center", gap: 4 }}
               >
-                Manage Contributors â†’
+                Manage Contributors
               </Link>
             )}
           </div>

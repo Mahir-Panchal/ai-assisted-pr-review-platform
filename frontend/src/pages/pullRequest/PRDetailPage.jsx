@@ -155,7 +155,7 @@ const PRDetailPage = () => {
 
       {/* Main layout */}
       <div style={{ display: "grid", gridTemplateColumns: "1fr 340px", gap: 20 }}>
-        {/* Left â€” Code + Comments */}
+        {/* Left - Code + Comments */}
         <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
           {/* Submitted Code */}
           <div style={S.card}>
@@ -281,7 +281,7 @@ const PRDetailPage = () => {
           </div>
         </div>
 
-        {/* Right â€” AI Review + Rule Check */}
+        {/* Right - AI Review + Rule Check */}
         <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
           {/* AI Review */}
           <div style={S.card}>
@@ -342,7 +342,7 @@ const PRDetailPage = () => {
                   <ul style={{ display: "flex", flexDirection: "column", gap: 6, listStyle: "none", padding: 0, margin: 0 }}>
                     {pr.aiResult.improvements.map((imp, i) => (
                       <li key={i} style={{ display: "flex", gap: 8, fontSize: 12, color: "#c9d1d9" }}>
-                        <span style={{ color: "#60a5fa", flexShrink: 0 }}>â†’</span>
+                        <span style={{ color: "#60a5fa", flexShrink: 0 }}></span>
                         {imp}
                       </li>
                     ))}

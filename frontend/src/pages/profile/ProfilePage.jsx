@@ -353,7 +353,7 @@ const ProfilePage = () => {
                         fontSize: 12, fontWeight: 700, padding: "2px 10px", borderRadius: 99,
                         background: "rgba(239,68,68,0.1)", color: "#f87171", border: "1px solid rgba(239,68,68,0.2)"
                       }}>
-                        {v.violations}Ã—
+                        {v.violations}
                       </span>
                     </div>
                   ))}

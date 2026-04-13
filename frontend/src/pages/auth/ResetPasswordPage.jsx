@@ -81,7 +81,7 @@ const ResetPasswordPage = () => {
   return (
     <div className="min-h-screen flex" style={{ background: "var(--bg-base)" }}>
 
-      {/* â”€â”€ Left Panel â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+      {/*  Left Panel  */}
       <div
         className="hidden lg:flex lg:w-[48%] flex-col justify-center items-center p-12 relative overflow-hidden"
         style={{ background: "linear-gradient(145deg, #0a0f1a 0%, #0d1117 50%, #0a1628 100%)" }}
@@ -152,7 +152,7 @@ const ResetPasswordPage = () => {
         </div>
       </div>
 
-      {/* â”€â”€ Right Panel â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+      {/*  Right Panel  */}
       <div className="flex-1 flex items-center justify-center p-6 lg:p-12">
         <div className="w-full max-w-[400px] animate-fade-in">
 
@@ -227,7 +227,7 @@ const ResetPasswordPage = () => {
                     <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="3" opacity="0.25" />
                     <path d="M4 12a8 8 0 018-8" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
                   </svg>
-                  Resettingâ€¦
+                  Resetting
                 </span>
               ) : (
                 <>Set new password <ArrowRight size={16} /></>
@@ -243,7 +243,7 @@ const ResetPasswordPage = () => {
               textDecoration: "none", width: "fit-content"
             }}
           >
-            â† Back to login
+            Back to login
           </Link>
         </div>
       </div>

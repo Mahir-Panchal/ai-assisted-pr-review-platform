@@ -36,10 +36,9 @@ const S = {
   }
 };
 
-/* â”€â”€ Controlled number input row â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+/* Controlled number input row 
    Keeps its own local value so the input does NOT jump when the parent
-   re-renders after a mutation + query invalidation.
-â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+   re-renders after a mutation + query invalidation. */
 const NumberRuleRow = ({ rule, value, onUpdate, onDelete, updatingRules }) => {
   const [localValue, setLocalValue] = useState(String(value));
   const [dirty, setDirty] = useState(false);
@@ -102,7 +101,6 @@ const NumberRuleRow = ({ rule, value, onUpdate, onDelete, updatingRules }) => {
   );
 };
 
-/* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 
 const RepositorySettingsPage = () => {
   const { repoId } = useParams();
@@ -210,7 +208,7 @@ const RepositorySettingsPage = () => {
         ))}
       </div>
 
-      {/* â”€â”€ General Tab â”€â”€ */}
+      {/* General Tab  */}
       {activeTab === "general" && (
         <div style={{ maxWidth: 480 }}>
           <div style={{ ...S.card, padding: 24 }}>
@@ -268,14 +266,14 @@ const RepositorySettingsPage = () => {
                 disabled={updating}
                 style={{ ...S.btnPrimary, marginTop: 4, opacity: updating ? 0.5 : 1 }}
               >
-                {updating ? "Savingâ€¦" : "Save Changes"}
+                {updating ? "Saving…" : "Save Changes"}
               </button>
             </div>
           </div>
         </div>
       )}
 
-      {/* â”€â”€ Rules Tab â”€â”€ */}
+      {/* Rules Tab */}
       {activeTab === "rules" && (
         <div style={{ display: "flex", flexDirection: "column", gap: 20, maxWidth: 600 }}>
 
@@ -347,7 +345,7 @@ const RepositorySettingsPage = () => {
                       </div>
                     </div>
                   ) : (
-                    /* Number â€” controlled, no jump */
+                    /* Number - controlled, no jump */
                     <NumberRuleRow
                       key={rule}
                       rule={rule}
@@ -396,7 +394,7 @@ const RepositorySettingsPage = () => {
                       onMouseLeave={e => (e.currentTarget.style.background = "rgba(37,99,235,0.1)")}
                     >
                       <Plus size={12} />
-                      {updatingRules ? "Addingâ€¦" : "Add"}
+                      {updatingRules ? "Adding…" : "Add"}
                     </button>
                   </div>
                 ))}

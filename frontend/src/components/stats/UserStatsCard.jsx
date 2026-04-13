@@ -6,7 +6,7 @@ const StatItem = ({ label, value, icon: Icon, color = "text-blue-400" }) => (
       <span className="text-xs text-gray-500">{label}</span>
       <Icon className={`w-4 h-4 ${color}`} />
     </div>
-    <p className="text-2xl font-bold text-gray-100">{value ?? "â€”"}</p>
+    <p className="text-2xl font-bold text-gray-100">{value ?? "-"}</p>
   </div>
 );
 
