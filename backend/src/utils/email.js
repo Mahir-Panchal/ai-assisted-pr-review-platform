@@ -1,45 +1,44 @@
-import nodemailer from "nodemailer";
+import { Resend } from "resend";
 import ApiError from "./ApiError.js";
 
-/* ================= CREATE TRANSPORTER ================= */
+/* ================= GET RESEND INSTANCE ================= */
 
-let transporter;
-
-const createTransporter = async () => {
-  if (transporter) return transporter;
-
-  try {
-    transporter = nodemailer.createTransport({
-      service: "gmail",
-      auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS
-      }
-    });
-
-    // Verify only once
-    await transporter.verify();
-    console.log("Email service connected successfully");
-
-    return transporter;
-  } catch (error) {
-    console.error("Email transporter creation failed:", error.message);
-    throw new ApiError(500, "Email service unavailable");
+const getResend = () => {
+  if (!process.env.RESEND_API_KEY) {
+    throw new ApiError(500, "Missing RESEND_API_KEY");
   }
+
+  return new Resend(process.env.RESEND_API_KEY);
 };
 
 /* ================= GENERIC SEND MAIL ================= */
 
 const sendMail = async ({ to, subject, html, text }) => {
-  const mailTransporter = await createTransporter();
+  try {
+    if (!process.env.EMAIL_FROM) {
+      throw new ApiError(500, "Missing EMAIL_FROM");
+    }
 
-  await mailTransporter.sendMail({
-    from: `"AI PR Review Platform" <${process.env.EMAIL_USER}>`,
-    to,
-    subject,
-    text,
-    html
-  });
+    const resend = getResend();
+
+    const { data, error } = await resend.emails.send({
+      from: process.env.EMAIL_FROM,
+      to,
+      subject,
+      html,
+      text
+    });
+
+    if (error) {
+      console.error("Resend error:", error);
+      throw new ApiError(500, error.message || "Failed to send email");
+    }
+
+    return data;
+  } catch (err) {
+    console.error("Email send failed:", err.message);
+    throw err;
+  }
 };
 
 /* ================= SEND OTP EMAIL ================= */
@@ -82,6 +81,7 @@ export const sendResetPasswordEmail = async (to, resetLink) => {
 };
 
 /* ================= SEND INVITATION EMAIL ================= */
+
 export const sendInvitationEmail = async (
   to,
   inviterName,
@@ -94,7 +94,7 @@ export const sendInvitationEmail = async (
     subject: `${inviterName} invited you to collaborate on ${repoName}`,
     html: `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-        <h2>🎉 You have been invited!</h2>
+        <h2>You have been invited!</h2>
         <p>
           <strong>${inviterName}</strong> has invited you to collaborate 
           on the repository <strong>${repoName}</strong>.
@@ -104,19 +104,16 @@ export const sendInvitationEmail = async (
           <a href="${acceptLink}"
              style="padding:12px 24px; background:#16a34a; color:white; 
                     text-decoration:none; border-radius:6px; margin-right:10px;">
-            ✅ Accept Invitation
+            Accept Invitation
           </a>
           <a href="${declineLink}"
              style="padding:12px 24px; background:#dc2626; color:white; 
                     text-decoration:none; border-radius:6px;">
-            ❌ Decline Invitation
+            Decline Invitation
           </a>
         </div>
         <p style="color:#6b7280; font-size:14px;">
           This invitation expires in 7 days.
-        </p>
-        <p style="color:#6b7280; font-size:14px;">
-          If you did not expect this invitation, you can safely ignore this email.
         </p>
       </div>
     `
