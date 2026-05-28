@@ -30,18 +30,18 @@ export const createRepository = asyncHandler(async (req, res) => {
     name: name.trim(),
     description,
     visibility,
-    rules:{},
+    rules: {},
     owner: req.user._id
   });
 
-    await createActivity({
+  await createActivity({
     repository: repository._id,
     performedBy: req.user._id,
     type: "repo_created",
     message: `${req.user.username} created repository ${repository.name}`
   });
 
-  
+
 
   return res.status(201).json(
     new ApiResponse(
@@ -63,8 +63,8 @@ export const getRepositories = asyncHandler(async (req, res) => {
       { visibility: "public" }
     ]
   })
-  .populate("owner", "username email")
-  .populate("contributors", "username email");
+    .populate("owner", "username email")
+    .populate("contributors", "username email");
 
   return res.status(200).json(
     new ApiResponse(
@@ -82,24 +82,46 @@ export const getRepositoryById = asyncHandler(async (req, res) => {
 
   const { repoId } = req.params;
 
+  console.log("repoId:", repoId);
+  console.log("req.user:", req.user);
+
+  if (!repoId) {
+    throw new ApiError(400, "Repository ID is required");
+  }
+
   const repository = await Repository.findById(repoId)
     .populate("owner", "username email")
     .populate("contributors", "username email");
+
+  console.log("repository:", repository);
 
   if (!repository) {
     throw new ApiError(404, "Repository not found");
   }
 
-  const isOwner = repository.owner._id.toString() === req.user._id.toString();
+  const currentUserId = req.user?._id?.toString();
 
-  const isContributor = repository.contributors.some(
-    (contributor) => contributor._id.toString() === req.user._id.toString()
-  );
+  const ownerId = repository.owner?._id?.toString();
+
+  const isOwner =
+    ownerId && currentUserId
+      ? ownerId === currentUserId
+      : false;
+
+  const isContributor = Array.isArray(repository.contributors)
+    ? repository.contributors.some(
+      (contributor) =>
+        contributor?._id?.toString() === currentUserId
+    )
+    : false;
 
   const isPublic = repository.visibility === "public";
 
   if (!isOwner && !isContributor && !isPublic) {
-    throw new ApiError(403, "You do not have access to this repository");
+    throw new ApiError(
+      403,
+      "You do not have access to this repository"
+    );
   }
 
   return res.status(200).json(
@@ -229,7 +251,7 @@ export const getRepositoryById = asyncHandler(async (req, res) => {
 
 //   /* ---------- RULES: DELETE ---------- */
 
-  
+
 
 //   /* ---------- RULES: DELETE ---------- */
 
@@ -279,7 +301,7 @@ export const getRepositoryById = asyncHandler(async (req, res) => {
 //     "Repository updated successfully"
 //   )
 // );
-  
+
 
 // });
 
@@ -442,18 +464,18 @@ export const updateRepository = asyncHandler(async (req, res) => {
     for (const { rule, value } of rulesToAdd) {
       if (!rule) throw new ApiError(400, "Rule name is required");
 
-       /* ✅ Check Allowed Rule */
+      /* ✅ Check Allowed Rule */
       if (!allowedRules[rule]) {
-          throw new ApiError(400, `Rule '${rule}' is not supported`);
+        throw new ApiError(400, `Rule '${rule}' is not supported`);
       }
 
       /* ✅ Type Validation */
       const expectedType = allowedRules[rule].type;
       if (typeof value !== expectedType) {
-          throw new ApiError(
-            400,
-            `Invalid type for '${rule}', expected ${expectedType}`
-          );
+        throw new ApiError(
+          400,
+          `Invalid type for '${rule}', expected ${expectedType}`
+        );
       }
 
 
@@ -470,25 +492,25 @@ export const updateRepository = asyncHandler(async (req, res) => {
     for (const { rule, value } of rulesToUpdate) {
 
       if (!allowedRules[rule]) {
-          throw new ApiError(400, `Rule '${rule}' is not supported`);
+        throw new ApiError(400, `Rule '${rule}' is not supported`);
       }
 
       const expectedType = allowedRules[rule].type;
-        if (typeof value !== expectedType) {
-          throw new ApiError(
-            400,
-            `Invalid type for '${rule}', expected ${expectedType}`
-          );
-        }
+      if (typeof value !== expectedType) {
+        throw new ApiError(
+          400,
+          `Invalid type for '${rule}', expected ${expectedType}`
+        );
+      }
 
       if (!repository.rules || repository.rules[rule] === undefined) {
         throw new ApiError(400, `Rule '${rule}' does not exist and cannot be updated`);
       }
-       
+
       setFields[`rules.${rule}`] = value;
 
-      
-      
+
+
     }
   }
 
@@ -499,7 +521,7 @@ export const updateRepository = asyncHandler(async (req, res) => {
         throw new ApiError(400, `Rule '${rule}' does not exist and cannot be removed`);
       }
       unsetFields[`rules.${rule}`] = "";
-      
+
     }
   }
 
@@ -523,7 +545,11 @@ export const updateRepository = asyncHandler(async (req, res) => {
 
   if (Object.keys(updateQuery).length > 0) {
     // await Repository.findByIdAndUpdate(repoId, updateQuery, { new: true });
-    await Repository.findByIdAndUpdate(repoId, updateQuery, { returnDocument: 'after' });
+    await Repository.findByIdAndUpdate(
+      repoId,
+      updateQuery,
+      { new: true }
+    );
   }
 
   const updatedRepository = await Repository.findById(repoId)
@@ -557,22 +583,22 @@ export const deleteRepository = asyncHandler(async (req, res) => {
   }
 
 
-  
-    await PullRequest.deleteMany({ repository: repoId });
-    await File.deleteMany({ repository: repoId });
 
-    await Repository.findByIdAndDelete(repoId);
+  await PullRequest.deleteMany({ repository: repoId });
+  await File.deleteMany({ repository: repoId });
 
-    
+  await Repository.findByIdAndDelete(repoId);
 
-    return res.status(200).json(
-      new ApiResponse(
-        200,
-        null,
-        "Repository deleted successfully"
-      )
-    );
-  
+
+
+  return res.status(200).json(
+    new ApiResponse(
+      200,
+      null,
+      "Repository deleted successfully"
+    )
+  );
+
 });
 
 /* ================= GET REPO RULES ================= */

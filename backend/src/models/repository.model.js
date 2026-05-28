@@ -1,47 +1,43 @@
-import mongoose, { Schema } from "mongoose";
+import mongoose from "mongoose";
 
-const repositorySchema = new Schema(
+const repositorySchema = new mongoose.Schema(
   {
     name: {
       type: String,
       required: true,
-      trim: true
+      trim: true,
     },
 
     description: {
       type: String,
-      default: ""
+      default: "",
     },
-
-    owner: {
-      type: Schema.Types.ObjectId,
-      ref: "User",
-      required: true
-    },
-
-    contributors: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: "User"
-      }
-    ],
 
     visibility: {
       type: String,
       enum: ["public", "private"],
-      default: "private"
+      default: "private",
     },
 
-    rules: {
-    type: Schema.Types.Mixed,
-    default: {
-      // minCommitMessageLength: 5,
-      // disallowTodo: false,
-      // disallowConsoleLog: false
-      }
-    }
+    owner: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
+    },
+
+    contributors: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+      },
+    ],
   },
-  { timestamps: true }
+  {
+    timestamps: true,
+  }
 );
 
-export const Repository = mongoose.model("Repository", repositorySchema);
+export const Repository = mongoose.model(
+  "Repository",
+  repositorySchema
+);

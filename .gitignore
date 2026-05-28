@@ -146,4 +146,6 @@ frontend/dist/
 # SvelteKit build / generate output
 .svelte-kit
 
+project_codebase.md
+
 # End of https://www.toptal.com/developers/gitignore/api/node
